@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Hashtable;
-
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
 @SpringBootApplication
 public class JavaBackendPracticeApplication {
 	public static class User {
@@ -41,11 +43,10 @@ public class JavaBackendPracticeApplication {
 	}
 //********************************************************************
 //	Game: Created by Evan Price
-//  Inputs: User
-//  Outputs: void
+//  Inputs: System in
+//  Outputs: System out
 //	Goal: choose a number that is the same as the random number generated
 //********************************************************************
-
 	public static class Game{
 		private static Integer Guesses;
 		private static Integer Solution;
@@ -98,9 +99,11 @@ public class JavaBackendPracticeApplication {
 	}
 
 	public static void main(String[] args) {
+		MongoDatabase
 		SpringApplication.run(JavaBackendPracticeApplication.class, args);
 		User user = new User("Bob","123 Fake St", "1/11/11","Iowa City","Iowa", "52245");
 		System.out.println(user.Collection);
 		//Game();
+		MongoClient mongoClient = new MongoClient();
 	}
 	}
