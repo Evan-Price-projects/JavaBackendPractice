@@ -12,18 +12,15 @@ import java.util.Scanner;
 public class JavaBackendPracticeApplication {
 	public static class User {
 		private static String Username;
+		private static String Address;
+		private static String Birthdate;
+
 
 		public User(String Username) {
 			this.Username = Username;
 		}
 	}
-	public static class CreateGame {
-		private static Integer PlayerNumber;
-		private static List PlayerNames;
-		public CreateGame (Integer PlayerNumber, List PlayerNames) {
-			this.PlayerNumber = PlayerNumber;
-			this.PlayerNames = PlayerNames;
-		}
+
 	public static class Game{
 		private static Integer Guesses;
 		public void setGuesses(Integer guess){
