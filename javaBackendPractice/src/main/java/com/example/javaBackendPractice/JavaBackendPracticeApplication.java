@@ -1,15 +1,15 @@
 package com.example.javaBackendPractice;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.print.attribute.standard.Chromaticity;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Hashtable;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoCredential;
+
 @SpringBootApplication
 public class JavaBackendPracticeApplication {
 	public static class User {
@@ -19,7 +19,7 @@ public class JavaBackendPracticeApplication {
 		private static String City;
 		private static String State;
 		private static String Zip;
-		private static Hashtable<String, ArrayList> Collection;
+		private static Hashtable<String, Document> Collection;
 
 
 
@@ -30,14 +30,13 @@ public class JavaBackendPracticeApplication {
 			this.City = City;
 			this.State = State;
 			this.Zip = Zip;
-			this.Collection = new Hashtable<String,ArrayList>();
-			ArrayList<String> combo = new ArrayList<String>();
-			combo.add(this.Username);
-			combo.add(this.Address);
-			combo.add(this.Birthdate);
-			combo.add(this.City);
-			combo.add(this.State);
-			combo.add(this.Zip);
+			this.Collection = new Hashtable<String,Document>();
+			Document combo = new Document();
+			combo.put("Birthdate",this.Birthdate);
+			combo.put("Address",this.Address);
+			combo.put("City",this.City);
+			combo.put("State",this.State);
+			combo.put("Zip",this.Zip);
 			this.Collection.put(this.Username,combo);
 		}
 	}
@@ -99,11 +98,12 @@ public class JavaBackendPracticeApplication {
 	}
 
 	public static void main(String[] args) {
-		MongoDatabase
 		SpringApplication.run(JavaBackendPracticeApplication.class, args);
 		User user = new User("Bob","123 Fake St", "1/11/11","Iowa City","Iowa", "52245");
 		System.out.println(user.Collection);
 		//Game();
-		MongoClient mongoClient = new MongoClient();
+		MongoClient mc = new MongoClient("localhost", 27017);
+		MongoDatabase database = mc.getDatabase("JavaBackendPractice");
+
 	}
 	}
