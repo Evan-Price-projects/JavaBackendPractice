@@ -102,8 +102,8 @@ public class JavaBackendPracticeApplication {
 		User user = new User("Bob","123 Fake St", "1/11/11","Iowa City","Iowa", "52245");
 		System.out.println(user.Collection);
 		//Game();
-		MongoClient mc = new MongoClient("localhost", 27017);
+		MongoClient mc = new MongoClient();
 		MongoDatabase database = mc.getDatabase("JavaBackendPractice");
-
+		CreateUser newUser = new CreateUser(user.Collection);
 	}
 	}

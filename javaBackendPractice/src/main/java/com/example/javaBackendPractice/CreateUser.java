@@ -8,9 +8,10 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Enumeration;
+
 public class CreateUser {
     public CreateUser(Hashtable<String, Document> userInfo){
-        MongoClient mc = new MongoClient("localhost", 27017);
+        MongoClient mc = new MongoClient();
         MongoDatabase database = mc.getDatabase("JavaBackendPractice");
         String Username = String.valueOf(userInfo.keys());
         database.createCollection(Username);
