@@ -5,14 +5,13 @@ import org.bson.Document;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Hashtable;
 
 @SpringBootApplication
 public class JavaBackendPracticeApplication {
-	public static class User {
+	public static class UserInfo {
 		private static String Username;
 		private static String Address;
 		private static String Birthdate;
@@ -23,7 +22,7 @@ public class JavaBackendPracticeApplication {
 
 
 
-		public User(String Username, String Address, String Birthdate, String City, String State, String Zip) {
+		public UserInfo(String Username, String Address, String Birthdate, String City, String State, String Zip) {
 			this.Username = Username;
 			this.Address = Address;
 			this.Birthdate = Birthdate;
@@ -99,11 +98,12 @@ public class JavaBackendPracticeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavaBackendPracticeApplication.class, args);
-		User user = new User("Bob","123 Fake St", "1/11/11","Iowa City","Iowa", "52245");
+		UserInfo user = new UserInfo("Bob","123 Fake St", "1/11/11","Iowa City","Iowa", "52245");
 		System.out.println(user.Collection);
 		//Game();
 		MongoClient mc = new MongoClient();
 		MongoDatabase database = mc.getDatabase("JavaBackendPractice");
-		CreateUser newUser = new CreateUser(user.Collection);
+		com.example.javaBackendPractice.User newUser = new com.example.javaBackendPractice.User();
+		User.CreateUser createUser = new User.CreateUser(user.Collection);
 	}
 	}
