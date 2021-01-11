@@ -5,22 +5,26 @@ import org.bson.Document;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Hashtable;
 
 @SpringBootApplication
 public class JavaBackendPracticeApplication {
-	public static class UserInfo {
+	public static class UserInfo  implements Serializable {
 		private static String Username;
 		private static String Address;
 		private static String Birthdate;
 		private static String City;
 		private static String State;
 		private static String Zip;
+		private static Document UserInformation;
 		private static Hashtable<String, Document> Collection;
 
-
+		public String getUsername() {
+			return Username;
+		}
 
 		public UserInfo(String Username, String Address, String Birthdate, String City, String State, String Zip) {
 			this.Username = Username;
@@ -30,13 +34,13 @@ public class JavaBackendPracticeApplication {
 			this.State = State;
 			this.Zip = Zip;
 			this.Collection = new Hashtable<String,Document>();
-			Document combo = new Document();
-			combo.put("Birthdate",this.Birthdate);
-			combo.put("Address",this.Address);
-			combo.put("City",this.City);
-			combo.put("State",this.State);
-			combo.put("Zip",this.Zip);
-			this.Collection.put(this.Username,combo);
+			this.UserInformation = new Document();
+			this.UserInformation.put("Birthdate",this.Birthdate);
+			this.UserInformation.put("Address",this.Address);
+			this.UserInformation.put("City",this.City);
+			this.UserInformation.put("State",this.State);
+			this.UserInformation.put("Zip",this.Zip);
+			this.Collection.put(this.Username,this.UserInformation);
 		}
 	}
 //********************************************************************
@@ -96,14 +100,14 @@ public class JavaBackendPracticeApplication {
 		System.out.println("The Solution was:" + newGame.getSolution());
 	}
 
+	/*
 	public static void main(String[] args) {
 		SpringApplication.run(JavaBackendPracticeApplication.class, args);
-		UserInfo user = new UserInfo("Bob","123 Fake St", "1/11/11","Iowa City","Iowa", "52245");
+		UserInfo user = new UserInfo("Boba","123 Fake St", "1/11/11","Iowa City","Iowa", "52245");
 		System.out.println(user.Collection);
 		//Game();
-		MongoClient mc = new MongoClient();
-		MongoDatabase database = mc.getDatabase("JavaBackendPractice");
 		com.example.javaBackendPractice.User newUser = new com.example.javaBackendPractice.User();
-		User.CreateUser createUser = new User.CreateUser(user.Collection);
-	}
+		//User.CreateUser(user.Collection);
+		//User.EditUser(user.Username,user.UserInformation);
+	}*/
 	}
